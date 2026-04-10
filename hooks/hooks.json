@@ -1,0 +1,27 @@
+{
+  "hooks": {
+    "SubagentStop": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'Task completed. Run /antivibe to generate a deep-dive learning guide for what was just implemented.'",
+            "matcher-type": "always"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "Analyze the current session. Did Claude Code write any new files or implement any features? If yes, respond with 'Auto-trigger available: Run /antivibe to generate deep-dive explanations for the code written in this session.' If no meaningful code was written, respond with nothing."
+          }
+        ]
+      }
+    ]
+  }
+}

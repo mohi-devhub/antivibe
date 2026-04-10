@@ -1,0 +1,15 @@
+# AntiVibe generated output
+deep-dive/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
