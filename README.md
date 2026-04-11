@@ -3,8 +3,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Anti-Vibecoding-Learning-orange?style=for-the-badge&logo=book&logoColor=white" alt="Anti-Vibecoding">
   <img src="https://img.shields.io/badge/Claude-Code-Skill-blue?style=for-the-badge&logo=anthropic&logoColor=white" alt="Claude Code">
-  <img src="https://img.shields.io/github/stars/antivibe/framework?style=for-the-badge&color=yellow" alt="Stars">
-  <img src="https://img.shields.io/github/license/antivibe/framework?style=for-the-badge&color=green" alt="License">
+  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License">
 </p>
 
 <p align="center">
@@ -48,22 +47,20 @@ AntiVibe is a **learning-focused code explanation framework** that transforms AI
 
 ```bash
 # Clone the repository
-git clone https://github.com/antivibe/framework.git
+git clone https://github.com/mohi-devhub/antivibe.git
 
-# Add as a skill to Claude Code
-npx skills add ./framework
-
-# Or copy to global skills
-cp -r framework ~/.claude/skills/antivibe
+# Install as a global Claude Code skill
+cp -r antivibe ~/.claude/skills/antivibe
 ```
 
 ### Usage
 
 ```
-/antivibe                    # Start a deep dive
-"explain this code"         # Analyze selected code
-"how does this work"        # Get detailed explanation
-"I want to understand"      # Generate learning guide
+/antivibe                        # Start a deep dive
+"deep dive"                      # Analyze recently written code
+"learn from this code"           # Generate learning guide
+"explain what AI wrote"          # Explain specific files
+"understand what AI wrote"       # Understand design decisions
 ```
 
 ---
@@ -187,7 +184,6 @@ Contributions welcome! To extend AntiVibe:
 ## 📖 Documentation
 
 - [Setup Guide](docs/setup.md) - Detailed installation
-- [Planning Document](docs/PLAN.md) - Architecture decisions
 - [Skill Format](https://docs.anthropic.com/en/docs/claude-code/skills) - Claude Code skills
 
 ---

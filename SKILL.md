@@ -2,13 +2,13 @@
 name: antivibe
 description: Anti-vibecoding learning framework. Generate detailed explanations of code written by AI with curated external resources for deeper learning. Use when the user wants to understand WHAT and WHY behind AI-generated code, not just accept it.
 triggers:
-  - phrase: "explain this code"
-  - phrase: "how does this work"
+  - phrase: "/antivibe"
   - phrase: "deep dive"
-  - phrase: "understand what"
-  - phrase: "why did AI"
+  - phrase: "anti-vibecode"
+  - phrase: "why did AI write"
   - phrase: "learn from this code"
-  - phrase: "breakdown of"
+  - phrase: "understand what AI wrote"
+  - phrase: "explain what AI wrote"
 ---
 
 # AntiVibe - AI Code Learning Framework
@@ -24,9 +24,9 @@ AntiVibe generates **learning-focused explanations** of AI-written code. Not gen
 ## When to Use
 
 Use AntiVibe when:
-1. **Manual invocation**: User asks `/antivibe`, "explain this code", "how does this work"
+1. **Manual invocation**: User types `/antivibe` or "deep dive"
 2. **Post-task learning**: After a feature/phase completes, user wants to learn from it
-3. **Proactive**: User says "I want to understand what Claude wrote" or "don't just give me code, teach me"
+3. **Proactive**: User says "explain what AI wrote", "learn from this code", or "understand what AI wrote"
 
 ## What AntiVibe Produces
 

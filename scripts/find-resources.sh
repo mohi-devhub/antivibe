@@ -37,7 +37,7 @@ case "$CONCEPT" in
         echo "- https://expressjs.com/en/guide/ - Express guide"
         echo "- https://expressjs.com/en/api/ - Express API reference"
         echo "Best Practices:"
-        echo "- https://.restfulapi.net/ - REST API design"
+        echo "- https://restfulapi.net/ - REST API design"
         ;;
     *"database"*|"sql"|*"postgres"|*"mysql")
         echo "--- Database Resources ---"

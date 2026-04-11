@@ -5,9 +5,8 @@
         "matcher": ".*",
         "hooks": [
           {
-            "type": "command",
-            "command": "echo 'Task completed. Run /antivibe to generate a deep-dive learning guide for what was just implemented.'",
-            "matcher-type": "always"
+            "type": "prompt",
+            "prompt": "A task just completed. If new code files were written or modified, let the user know they can run /antivibe to generate a deep-dive learning guide for what was just implemented. Keep the message to one sentence."
           }
         ]
       }
@@ -18,7 +17,7 @@
         "hooks": [
           {
             "type": "prompt",
-            "prompt": "Analyze the current session. Did Claude Code write any new files or implement any features? If yes, respond with 'Auto-trigger available: Run /antivibe to generate deep-dive explanations for the code written in this session.' If no meaningful code was written, respond with nothing."
+            "prompt": "Analyze the current session. Did Claude Code write any new files or implement any features? If yes, respond with 'You can run /antivibe to generate deep-dive explanations for the code written this session.' If no meaningful code was written, respond with nothing."
           }
         ]
       }

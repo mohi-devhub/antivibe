@@ -6,27 +6,14 @@ AntiVibe is an **anti-vibecoding learning framework** for Claude Code. It genera
 
 ## Installation
 
-### Option 1: As a Skill (Recommended)
+### Installation
 
 ```bash
 # Clone this repository
-git clone https://github.com/yourusername/antivibe.git
+git clone https://github.com/mohi-devhub/antivibe.git
 
-# Add as a skill to your Claude Code setup
-npx skills add ./antivibe
-
-# Or copy to global skills directory
-cp -r antivibe ~/.claude/skills/
-```
-
-### Option 2: As a Plugin
-
-```bash
-# Add marketplace
-/plugin marketplace add https://github.com/yourusername/antivibe
-
-# Install plugin
-/plugin install antivibe@antivibe
+# Copy to Claude Code global skills directory
+cp -r antivibe ~/.claude/skills/antivibe
 ```
 
 ## Usage
@@ -36,9 +23,10 @@ cp -r antivibe ~/.claude/skills/
 Use the `/antivibe` command or describe what you want to learn:
 
 - `/antivibe` - Start a deep dive
-- "Explain this code" - Analyze selected code
-- "How does this work" - Get detailed explanation
-- "I want to understand what was written" - Generate learning guide
+- "deep dive" - Analyze recently written code
+- "learn from this code" - Generate learning guide
+- "explain what AI wrote" - Explain specific files
+- "understand what AI wrote" - Understand design decisions
 
 ### Automatic Triggers
 
