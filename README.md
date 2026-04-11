@@ -1,8 +1,8 @@
 # AntiVibe
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Anti-Vibecoding-Learning-orange?style=for-the-badge&logo=book&logoColor=white" alt="Anti-Vibecoding">
-  <img src="https://img.shields.io/badge/Claude-Code-Skill-blue?style=for-the-badge&logo=anthropic&logoColor=white" alt="Claude Code">
+  <img src="https://img.shields.io/badge/Anti--Vibecoding-Learning-orange?style=for-the-badge" alt="Anti-Vibecoding">
+  <img src="https://img.shields.io/badge/Claude_Code-Skill-blue?style=for-the-badge" alt="Claude Code">
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License">
 </p>
 
