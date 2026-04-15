@@ -46,7 +46,35 @@ Each file contains:
 - **Learning Resources**: Curated docs, tutorials, videos
 - **Related Code**: Links to other files in the codebase
 
+## Configuration
+
+### Known Concepts (Skip List)
+
+Concepts listed here will not be explained in full — the explainer will only note that they were used and in what context. Edit this list to match your current knowledge.
+
+```
+known_concepts:
+  - async/await
+  - React hooks
+  - REST APIs
+```
+
+### Default Skill Level
+
+Sets the explanation depth when no level is specified in the request. Options: `junior`, `mid`, `senior`. Default: `mid`.
+
+```
+default_level: mid
+```
+
+---
+
 ## Workflow
+
+### Step 0: Apply User Configuration
+Before analyzing, read the configuration above:
+- Load the `known_concepts` skip list. Any concept in this list will be acknowledged in one sentence instead of fully explained.
+- Load the `default_level` for explanation depth.
 
 ### Step 1: Identify Code to Analyze
 - Check for explicit file list in user request

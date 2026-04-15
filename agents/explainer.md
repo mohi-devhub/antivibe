@@ -109,3 +109,4 @@ When explaining code, produce:
 - Include actual code snippets in explanations
 - Provide actionable next steps for learning
 - Make it accessible to different skill levels
+- **Respect the known concepts skip list**: Before writing a full explanation for any concept, check whether it appears in the `known_concepts` list in SKILL.md. If it does, replace the full explanation with a single line: `[Concept] — skipped (marked as known). Used here to [one sentence on its role in this specific code].`
