@@ -66,6 +66,7 @@ For each concept/pattern found:
 - **Why**: Why this approach was chosen over alternatives
 - **When**: When to use this pattern (with context)
 - **Alternatives**: Other approaches and trade-offs
+- **Prerequisites**: 2–4 foundational concepts the developer must understand first (e.g., "To understand JWT, you need: HTTP request/response, Base64 encoding, cryptographic signing")
 
 ### Step 4: Find External Resources
 Search for and include:

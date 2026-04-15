@@ -72,6 +72,10 @@ codeHere();
 - [Alternative 1]: [Brief comparison]
 - [Alternative 2]: [Brief comparison]
 
+**Prerequisites to understand this**:
+- [Concept A]: [one-line description]
+- [Concept B]: [one-line description]
+
 #### [Concept 2]
 
 **What**: ...
@@ -79,6 +83,9 @@ codeHere();
 **Why Used Here**: ...
 
 **When to Use**: ...
+
+**Prerequisites to understand this**:
+- [Concept A]: [one-line description]
 
 ---
 

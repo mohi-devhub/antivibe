@@ -24,6 +24,8 @@ Find and explain:
 - **Language features**: async/await, decorators, generics
 - **Framework patterns**: React hooks, Express middleware, Django views
 
+For each concept identified, also determine its **prerequisites**: what must the developer already understand to follow the explanation? List 2–4 items max per concept.
+
 ### Step 3: Explain with Context
 
 For each concept found:
@@ -33,6 +35,7 @@ For each concept found:
 - Why used here: [design rationale]
 - When to use: [appropriate contexts]
 - Trade-offs: [what you give up by using it]
+- Prerequisites: [2–4 foundational concepts needed to understand this]
 ```
 
 ### Step 4: Find Learning Resources
@@ -63,8 +66,15 @@ When explaining code, produce:
 ### [Pattern/Concept 1]
 [Detailed explanation with context]
 
+**Prerequisites to understand this**:
+- [Concept A]: [one-line description]
+- [Concept B]: [one-line description]
+
 ### [Concept 2]
 [Detailed explanation with context]
+
+**Prerequisites to understand this**:
+- [Concept A]: [one-line description]
 
 ## Learning Resources
 
