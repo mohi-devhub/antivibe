@@ -70,6 +70,23 @@ known_concepts:
   - REST APIs
 ```
 
+### Output Mode
+
+Controls how much detail is generated per run. Default is `compact` to keep token costs low.
+
+```
+output_mode: compact
+```
+
+| Mode | What's included |
+|------|----------------|
+| `compact` (default) | Overview, key components (function-level, one line each), concepts (what + why only). No resources. No line-by-line. Max 5 files. |
+| `full` | Everything in compact, plus: line-by-line walkthrough, prerequisites, curated resources, Next Steps. |
+
+Override inline in your request:
+- `"/antivibe full"`, `"full deep dive"`, `"include resources"` → `full` mode
+- Default: `compact`
+
 ### Default Skill Level
 
 Sets the explanation depth when no level is specified in the request. Options: `junior`, `mid`, `senior`. Default: `mid`.
@@ -127,6 +144,8 @@ For each concept/pattern found:
 - **Prerequisites**: 2–4 foundational concepts the developer must understand first (e.g., "To understand JWT, you need: HTTP request/response, Base64 encoding, cryptographic signing")
 
 ### Step 4: Find External Resources
+**Only run this step in `full` mode.** Skip entirely in `compact` mode.
+
 Search for and include:
 - Official documentation for libraries/frameworks used
 - Quality tutorials or blog posts
@@ -136,8 +155,9 @@ Search for and include:
 ### Step 5: Generate Output
 Create markdown file in `deep-dive/` folder:
 - Name format: `[component]-[timestamp].md`
-- Follow the template in `templates/deep-dive.md`
-- Include code snippets where helpful
+- Detect output mode from the request or `output_mode` config (default: `compact`)
+- **Compact mode**: Use the compact template. No line-by-line, no resources, no Next Steps. Max 5 files — if more are in scope, summarize extras in one line each and offer to go deeper.
+- **Full mode**: Use the full template from `templates/deep-dive.md`. Include all sections.
 - Make it educational, not just descriptive
 
 ## Configuration
