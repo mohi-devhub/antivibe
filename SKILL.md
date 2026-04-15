@@ -67,6 +67,17 @@ Sets the explanation depth when no level is specified in the request. Options: `
 default_level: mid
 ```
 
+| Level | Behavior |
+|-------|----------|
+| `junior` | Define all terms. Use analogies. Explain language features. Show full code snippets with inline comments. |
+| `mid` | Skip basics. Focus on design decisions and trade-offs. Brief code references only. |
+| `senior` | Skip obvious patterns. Focus only on non-obvious choices, edge cases, and architectural trade-offs. |
+
+Level can also be specified inline in the request:
+- `"explain for a junior"`, `"I'm new to this"` → `junior`
+- `"I know the basics"`, `"mid level"` → `mid`
+- `"senior mode"`, `"skip the basics"`, `"just the trade-offs"` → `senior`
+
 ---
 
 ## Workflow
@@ -74,7 +85,7 @@ default_level: mid
 ### Step 0: Apply User Configuration
 Before analyzing, read the configuration above:
 - Load the `known_concepts` skip list. Any concept in this list will be acknowledged in one sentence instead of fully explained.
-- Load the `default_level` for explanation depth.
+- Detect the skill level: check the user's request first (inline phrases take priority), then fall back to `default_level`. Apply this level consistently throughout the entire output.
 
 ### Step 1: Identify Code to Analyze
 - Check for explicit file list in user request

@@ -96,6 +96,21 @@ When explaining code, produce:
 4. **Connect concepts**: Link to underlying CS principles
 5. **Curate resources**: Quality over quantity
 
+## Explanation Depth by Level
+
+Detect the skill level from the user's request (inline phrases take priority) or the `default_level` in SKILL.md. Apply it consistently across the entire output — not just concept explanations.
+
+| Level | What to do |
+|-------|------------|
+| `junior` | Define all terms. Use real-world analogies. Explain language features (e.g., what a decorator is). Show full code snippets with inline comments. Assume no prior knowledge of the patterns used. |
+| `mid` (default) | Skip basics. Assume knowledge of language features. Focus on design decisions, trade-offs, and why this approach was chosen over alternatives. Brief code references only. |
+| `senior` | Skip anything obvious from context. Focus only on non-obvious architectural choices, subtle edge cases, and trade-offs that aren't immediately apparent. No hand-holding on patterns or language features. |
+
+Phrases that signal level:
+- Junior: `"explain for a junior"`, `"I'm new to this"`, `"explain everything"`
+- Mid: `"I know the basics"`, `"mid level"`, `"some context"`
+- Senior: `"senior mode"`, `"skip the basics"`, `"just the trade-offs"`, `"I know this stack"`
+
 ## Tone
 
 - Educational, not just descriptive
