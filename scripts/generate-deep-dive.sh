@@ -1,42 +1,60 @@
 #!/bin/bash
-# generate-deep-dive.sh - Generate markdown output from analysis
+set -euo pipefail
+
+# generate-deep-dive.sh - Generate markdown deep-dive from analysis
 # Usage: ./generate-deep-dive.sh [phase-name] [files...]
+# Exit codes: 0 success, 1 usage error, 2 file error
+
+source "$(dirname "$0")/config.sh"
 
 PHASE_NAME="${1:-code-analysis}"
-shift
+shift 2>/dev/null || true
 FILES=("$@")
 
-TIMESTAMP=$(date +%Y-%m-%d-%H%M%S)
-OUTPUT_DIR="deep-dive"
+TIMESTAMP=$(date +"$ANTIVIBE_DATE_FORMAT")
+OUTPUT_DIR="$ANTIVIBE_OUTPUT_DIR"
 OUTPUT_FILE="$OUTPUT_DIR/${PHASE_NAME}-${TIMESTAMP}.md"
 
 # Create output directory
-mkdir -p "$OUTPUT_DIR"
+if ! mkdir -p "$OUTPUT_DIR" 2>/dev/null; then
+    log_error "Cannot create output directory: $OUTPUT_DIR"
+    exit 2
+fi
 
-# Generate header
-cat > "$OUTPUT_FILE" << 'EOF'
-# Deep Dive
+# Check for existing file with same phase name (today)
+TODAY=$(date +%Y-%m-%d)
+EXISTING=$(find "$OUTPUT_DIR" -name "${PHASE_NAME}-${TODAY}*" -type f 2>/dev/null | head -1)
+if [ -n "$EXISTING" ]; then
+    log_warn "Existing deep-dive found: $EXISTING"
+    log_info "Creating new version with timestamp"
+fi
 
-EOF
+log_info "Generating deep-dive: $OUTPUT_FILE"
+echo ""
 
-echo "# $PHASE_NAME" >> "$OUTPUT_FILE"
-echo "" >> "$OUTPUT_FILE"
-echo "**Generated**: $(date '+%Y-%m-%d %H:%M:%S')" >> "$OUTPUT_FILE"
-echo "" >> "$OUTPUT_FILE"
+# Build the file header
+cat > "$OUTPUT_FILE" << EOF
+# Deep Dive: $PHASE_NAME
 
-# Add overview section
-cat >> "$OUTPUT_FILE" << 'EOF'
+**Generated**: $(date '+%Y-%m-%d %H:%M:%S')
+**Phase**: $PHASE_NAME
+**Files analyzed**: ${#FILES[@]}
+
+---
+
 ## Overview
-
-<!-- Add your overview here: What does this code do and why does it exist? -->
 
 ### What This Code Does
 
-_Describe the functionality in plain language_
+_Describe the functionality in plain language._
 
 ### Why This Approach Was Taken
 
-_Explain the design decisions and trade-offs_
+_Explain the design decisions and trade-offs._
+
+### Context
+
+_When would you use this? What problems does it solve?_
 
 ---
 
@@ -44,27 +62,48 @@ _Explain the design decisions and trade-offs_
 
 EOF
 
-# Process each file
+# Process each file - auto-populate with analysis data
 for FILE in "${FILES[@]}"; do
     if [ -f "$FILE" ]; then
+        BASENAME=$(basename "$FILE")
+        EXTENSION="${FILE##*.}"
+        LINES=$(wc -l < "$FILE" 2>/dev/null || echo "0")
+
+        cat >> "$OUTPUT_FILE" << EOF
+### $BASENAME
+
+**Path**: \`$FILE\`
+**Lines**: $LINES
+**Language**: $EXTENSION
+
+**Purpose**: _What this file handles_
+
+**Key Components**:
+EOF
+
+        # Auto-extract structure using analyze-code.sh
+        if [ -x "$ANTIVIBE_SCRIPTS/analyze-code.sh" ]; then
+            ANALYSIS=$("$ANTIVIBE_SCRIPTS/analyze-code.sh" "$FILE" 2>/dev/null || true)
+            # Extract function/class names from analysis
+            FUNCTIONS=$(echo "$ANALYSIS" | grep -A 50 "^Functions:" | grep -E "^[[:space:]]*(export|pub|def|func|function|class|const|async)" | head -5 || true)
+            if [ -n "$FUNCTIONS" ]; then
+                echo "" >> "$OUTPUT_FILE"
+                echo '```' >> "$OUTPUT_FILE"
+                echo "$FUNCTIONS" >> "$OUTPUT_FILE"
+                echo '```' >> "$OUTPUT_FILE"
+            fi
+        fi
+
         echo "" >> "$OUTPUT_FILE"
-        echo "### $(basename "$FILE")" >> "$OUTPUT_FILE"
+        echo "---" >> "$OUTPUT_FILE"
         echo "" >> "$OUTPUT_FILE"
-        echo "**Path**: \`$FILE\`" >> "$OUTPUT_FILE"
-        echo "" >> "$OUTPUT_FILE"
-        echo "**Purpose**: _What this file handles_" >> "$OUTPUT_FILE"
-        echo "" >> "$OUTPUT_FILE"
-        echo "**Key Components**:" >> "$OUTPUT_FILE"
-        echo "- _Function/Class 1_: _Purpose_" >> "$OUTPUT_FILE"
-        echo "- _Function/Class 2_: _Purpose_" >> "$OUTPUT_FILE"
-        echo "" >> "$OUTPUT_FILE"
+    else
+        log_warn "File not found, skipping: $FILE"
     fi
 done
 
 # Add concepts section
 cat >> "$OUTPUT_FILE" << 'EOF'
-
----
 
 ## Concepts Explained
 
@@ -74,14 +113,22 @@ cat >> "$OUTPUT_FILE" << 'EOF'
 |---------|------------|-----|
 | _Pattern name_ | _File/function_ | _Design rationale_ |
 
-### Key Concepts
+### Key Technical Concepts
 
-#### Concept Name
+#### Concept 1
 
-- **What**: _Plain language explanation_
-- **Why**: _Why this approach over alternatives_
-- **When to use**: _Context for usage_
-- **Alternatives**: _Other approaches_
+**What**: _Plain-language explanation_
+
+**Why Used Here**: _Design decision explanation_
+
+**When to Use**: _Appropriate contexts_
+
+**Trade-offs**:
+- Pros: _What you gain_
+- Cons: _What you give up_
+
+**Alternatives**:
+- _Alternative 1_: _Brief comparison_
 
 ---
 
@@ -89,34 +136,36 @@ cat >> "$OUTPUT_FILE" << 'EOF'
 
 ### Official Documentation
 
-- [_Link_]: _What you'll learn here_
+- [_Doc Name_](URL): _What you'll learn here_
 
 ### Tutorials & Articles
 
-- [_Link_]: _Why this is helpful_
+- [_Article Title_](URL): _Why this is helpful_
 
 ### Videos
 
-- [_Link_]: _What it covers_
+- [_Video Title_](URL): _What it covers_
 
 ---
 
-## Related Code
+## Related Code in This Project
 
-<!-- Link to other relevant files in the codebase -->
-
-- _Related file_: _How it connects_
+| File | Relationship |
+|------|--------------|
+| _related-file_ | _How it connects_ |
 
 ---
 
 ## Next Steps
 
-1. _Suggested learning path_
-2. _Deeper exploration topics_
-3. _Practice exercises_
+1. **Try it yourself**: _Hands-on exercise suggestion_
+2. **Deeper dive**: _Advanced topics to explore_
+3. **Common pitfalls**: _Things to watch out for_
 
+---
+
+*Generated by [AntiVibe](https://github.com/mohi-devhub/antivibe) - Learn what AI writes, not just accept it.*
 EOF
 
-echo "Generated: $OUTPUT_FILE"
-echo ""
-echo "Edit this file to add your specific analysis!"
+log_success "Generated: $OUTPUT_FILE"
+log_info "Edit this file to add your specific analysis."

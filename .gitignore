@@ -1,15 +1,37 @@
 # AntiVibe generated output
 deep-dive/
 
+# Environment & config
+.env
+.env.local
+
 # Editor
 .vscode/
 .idea/
 *.swp
 *.swo
+*~
 
 # OS
 .DS_Store
 Thumbs.db
+Desktop.ini
 
 # Logs
 *.log
+
+# Claude Code local config
+.claude/
+
+# Node (if used for tooling)
+node_modules/
+
+# Python (if used for tooling)
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Temporary files
+*.tmp
+*.bak

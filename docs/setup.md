@@ -1,202 +1,213 @@
 # AntiVibe Setup Guide
 
-## What is AntiVibe?
+## Prerequisites
 
-AntiVibe is an **anti-vibecoding learning framework** for Claude Code. It generates detailed, learning-focused explanations of AI-written code, helping you understand what AI writes - not just accept it.
+- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) installed and working
+- Bash shell (Linux, macOS, or Git Bash on Windows)
+- Optional: `jq` for better JSON parsing in resource lookup
 
 ## Installation
 
-### Installation
+### Automated Install (Recommended)
 
 ```bash
-# Clone this repository
 git clone https://github.com/mohi-devhub/antivibe.git
+cd antivibe
+bash install.sh
+```
 
-# Copy to Claude Code global skills directory
-cp -r antivibe ~/.claude/skills/antivibe
+This copies the skill to `~/.claude/skills/antivibe` and makes scripts executable.
+
+### Manual Install
+
+```bash
+git clone https://github.com/mohi-devhub/antivibe.git
+mkdir -p ~/.claude/skills/antivibe
+cp -r antivibe/* ~/.claude/skills/antivibe/
+chmod +x ~/.claude/skills/antivibe/scripts/*.sh
+```
+
+### Verify Installation
+
+```bash
+# Check the orchestrator works
+bash ~/.claude/skills/antivibe/scripts/antivibe.sh version
+# Expected: AntiVibe v1.0.0
+
+# Run the test suite
+cd antivibe
+bash tests/run-tests.sh
+# Expected: All tests passed!
 ```
 
 ## Usage
 
 ### Manual Invocation
 
-Use the `/antivibe` command or describe what you want to learn:
+Use the `/antivibe` command or natural language:
 
-- `/antivibe` - Start a deep dive
-- "deep dive" - Analyze recently written code
-- "learn from this code" - Generate learning guide
-- "explain what AI wrote" - Explain specific files
-- "understand what AI wrote" - Understand design decisions
+| Command | Description |
+|---------|-------------|
+| `/antivibe` | Start a deep dive on recently written code |
+| `"antivibe deep dive"` | Same as above |
+| `"explain what AI wrote"` | Explain specific files or recent changes |
+| `"learn from this code"` | Generate a learning guide |
+| `"understand what AI wrote"` | Understand design decisions |
 
-### Automatic Triggers
+### CLI Orchestrator
 
-Configure hooks to auto-trigger after task completion:
+For direct use from the terminal:
 
-1. Copy hooks configuration to your project:
 ```bash
+# Analyze a file
+bash scripts/antivibe.sh analyze src/auth/service.ts
+
+# Capture a development phase
+bash scripts/antivibe.sh capture "auth-system"
+
+# Find resources for a concept
+bash scripts/antivibe.sh resources "react hooks"
+
+# Generate a deep-dive for specific files
+bash scripts/antivibe.sh generate "api-layer" src/api/routes.ts src/api/middleware.ts
+
+# Run the full pipeline
+bash scripts/antivibe.sh full "feature-auth"
+```
+
+### Auto-Trigger Hooks
+
+Configure hooks so AntiVibe suggests learning after each task:
+
+```bash
+# Copy to your project's .claude directory
+mkdir -p your-project/.claude
 cp hooks/hooks.json your-project/.claude/hooks.json
 ```
 
-2. Or manually integrate into existing hooks:
-```json
-{
-  "hooks": {
-    "SubagentStop": [...],
-    "Stop": [...]
-  }
-}
-```
+This enables:
+- **SubagentStop**: After a coding task completes, suggests `/antivibe`
+- **Stop**: At session end, suggests generating deep-dives for the session
+
+To disable a hook, remove the corresponding entry from `hooks.json`.
 
 ## Output
 
-Generated deep-dives are saved to the `deep-dive/` folder:
+Generated files are saved to `deep-dive/` in your project root:
 
 ```
 your-project/
 ├── deep-dive/
-│   ├── auth-system-2026-01-15.md
-│   ├── api-layer-2026-01-15.md
-│   └── database-models-2026-01-15.md
+│   ├── auth-system-2026-04-16-143022.md
+│   ├── api-layer-2026-04-16-151505.md
+│   └── database-models-2026-04-16-160830.md
 ```
-
-Each file contains:
-- Overview of what the code does
-- Code walkthrough with explanations
-- Concepts explained (design patterns, algorithms)
-- Curated learning resources
-- Related code in your project
-- Next steps for deeper learning
 
 ## Configuration
 
-### Enable/Disable Auto-Triggers
+### Environment Variables
 
-Edit `hooks/hooks.json` to customize:
+Override defaults by setting environment variables:
 
-```json
-{
-  "hooks": {
-    "SubagentStop": [
-      {
-        "matcher": ".*",
-        "hooks": [...] // Remove to disable
-      }
-    ],
-    "Stop": [
-      {
-        "matcher": ".*",
-        "hooks": [...] // Remove to disable
-      }
-    ]
-  }
-}
+```bash
+# Change output directory
+export ANTIVIBE_OUTPUT_DIR="learning-notes"
+
+# Look back further for changes
+export ANTIVIBE_TIME_WINDOW=120
+
+# Limit captured files
+export ANTIVIBE_MAX_FILES=30
 ```
 
 ### Customize Output Location
 
-Edit `scripts/generate-deep-dive.sh` to change output directory:
 ```bash
-OUTPUT_DIR="your-custom-folder"  # Default: "deep-dive"
-```
+# Temporary (current session only)
+ANTIVIBE_OUTPUT_DIR="my-notes" bash scripts/antivibe.sh full "feature"
 
-## File Structure
-
-```
-antivibe/
-├── SKILL.md                    # Main skill definition
-├── hooks/
-│   └── hooks.json             # Auto-trigger configuration
-├── scripts/
-│   ├── capture-phase.sh       # Detect implementation phases
-│   ├── analyze-code.sh        # Parse code structure
-│   ├── find-resources.sh      # Find external resources
-│   └── generate-deep-dive.sh  # Generate markdown output
-├── agents/
-│   └── explainer.md           # Subagent for detailed analysis
-├── templates/
-│   └── deep-dive.md           # Output template
-├── reference/
-│   ├── language-patterns.md  # Framework-specific patterns
-│   └── resource-curation.md  # Curated learning resources
-└── docs/
-    └── setup.md               # This file
-```
-
-## How It Works
-
-1. **Trigger**: You invoke `/antivibe` or it triggers automatically
-2. **Identify**: Find code written in the session (via git diff or explicit file list)
-3. **Analyze**: Use the explainer agent to deeply analyze the code
-4. **Research**: Find relevant external resources
-5. **Generate**: Create markdown output in `deep-dive/` folder
-6. **Learn**: Read the detailed explanation and follow linked resources
-
-## Principles
-
-AntiVibe focuses on:
-- **Why over what** - Explain design decisions
-- **Curated resources** - Quality links, not random results
-- **Phase-aware** - Group by implementation phase
-- **Learning paths** - Suggest next steps
-- **Concept mapping** - Connect to underlying CS principles
-
-## Examples
-
-### Example 1: Analyze Auth System
-
-**Input**: "Explain the authentication system"
-**Output**:
-```markdown
-# Deep Dive: Authentication System
-
-## Overview
-This auth system uses JWT tokens with refresh token rotation...
-
-## Code Walkthrough
-### auth/service.ts
-- **Purpose**: Handles token generation and validation
-- **Key Components**: 
-  - `generateTokens()`: Creates access/refresh tokens
-  - `verifyToken()`: Validates JWT signatures
-
-## Concepts Explained
-### JWT (JSON Web Tokens)
-- **What**: Stateless authentication tokens...
-- **Why**: Server doesn't need to store sessions...
-- **When**: APIs, SPAs, microservices...
-
-## Learning Resources
-- [JWT.io](https://jwt.io): Official documentation
-- [Auth0 Guide](https://auth0.com/blog): Best practices
+# Permanent (add to your shell profile)
+echo 'export ANTIVIBE_OUTPUT_DIR="learning-notes"' >> ~/.bashrc
 ```
 
 ## Troubleshooting
 
-### Skill not loading
-
-- Ensure `SKILL.md` is in the correct location
-- Check that YAML frontmatter is valid
-- Verify `name` field uses lowercase and hyphens only
+### Skill not loading in Claude Code
+- Verify `SKILL.md` exists at `~/.claude/skills/antivibe/SKILL.md`
+- Check YAML frontmatter is valid (no tabs, proper indentation)
+- Restart Claude Code after installation
 
 ### Hooks not triggering
-
-- Verify `hooks.json` is valid JSON
-- Ensure hooks are in project `.claude/` folder
+- Verify `hooks.json` is valid JSON: `cat hooks.json | node -e "process.stdin.pipe(require('stream').Writable())"`
+- Ensure hooks file is in your project's `.claude/` folder
 - Check Claude Code version supports hooks
 
 ### Output not saving
+- Check write permissions on the output directory
+- Run `mkdir -p deep-dive` manually to verify
+- Try setting `ANTIVIBE_OUTPUT_DIR` to an absolute path
 
-- Verify `deep-dive/` folder exists
-- Check write permissions
-- Ensure you're in a git repository
+### Scripts not executable
+```bash
+chmod +x ~/.claude/skills/antivibe/scripts/*.sh
+```
 
-## Contributing
+### Resource lookup returns no results
+- Install `jq` for best results: `brew install jq` (macOS) or `apt install jq` (Linux)
+- Without `jq`, the script falls back to basic text matching
+- Check `reference/resources.json` exists and is valid JSON
 
-To extend AntiVibe:
+### Analysis doesn't detect my language
+- Check that your file extension matches a supported case in `analyze-code.sh`
+- Supported extensions: ts, tsx, js, jsx, py, go, rs, java, kt, swift, cs, rb, php, c, cpp, vue, svelte
+- For unsupported extensions, you'll get a generic first-30-lines analysis
 
-1. Add new patterns to `reference/language-patterns.md`
-2. Add resources to `reference/resource-curation.md`
-3. Customize the template in `templates/deep-dive.md`
+### Tests failing
+```bash
+# Make scripts executable first
+chmod +x scripts/*.sh tests/*.sh
+
+# Run with verbose output
+bash -x tests/test-analyze.sh
+```
+
+## Uninstall
+
+```bash
+# Automated
+bash uninstall.sh
+
+# Manual
+rm -rf ~/.claude/skills/antivibe
+```
+
+## Extending AntiVibe
+
+### Add a new language to analyze-code.sh
+Add a case block in `scripts/analyze-code.sh`:
+```bash
+ext)
+    echo "--- Language Structure ---"
+    extract_matches "your-pattern" "$FILE_PATH"
+    echo "--- Metrics ---"
+    echo "count=$(count_matches 'pattern' "$FILE_PATH")"
+    ;;
+```
+
+### Add resources
+Edit `reference/resources.json` — add a new object to the `resources` array:
+```json
+{
+  "keywords": ["your-concept", "related-terms"],
+  "category": "Category Name",
+  "links": [
+    {"url": "https://...", "title": "Resource Title", "type": "docs", "level": "beginner"}
+  ]
+}
+```
+
+### Add patterns
+Edit `reference/language-patterns.md` — add a new table following the existing format.
 
 ## License
 

@@ -1,0 +1,252 @@
+{
+  "resources": [
+    {
+      "keywords": ["react", "hooks", "useState", "useEffect", "useCallback", "useMemo", "useContext", "useReducer", "useRef"],
+      "category": "React",
+      "links": [
+        {"url": "https://react.dev/reference/react", "title": "React API Reference", "type": "docs", "level": "all"},
+        {"url": "https://react.dev/learn", "title": "React Learning Guide", "type": "tutorial", "level": "beginner"},
+        {"url": "https://react.dev/learn/thinking-in-react", "title": "Thinking in React", "type": "tutorial", "level": "beginner"}
+      ]
+    },
+    {
+      "keywords": ["typescript", "types", "generics", "interfaces", "type guards", "utility types", "discriminated unions"],
+      "category": "TypeScript",
+      "links": [
+        {"url": "https://www.typescriptlang.org/docs/handbook/intro.html", "title": "TypeScript Handbook", "type": "docs", "level": "all"},
+        {"url": "https://www.typescriptlang.org/play", "title": "TypeScript Playground", "type": "tool", "level": "all"},
+        {"url": "https://basarat.gitbook.io/typescript/", "title": "TypeScript Deep Dive (free book)", "type": "tutorial", "level": "intermediate"}
+      ]
+    },
+    {
+      "keywords": ["express", "api", "rest", "restful", "middleware", "routing", "http"],
+      "category": "API / Express",
+      "links": [
+        {"url": "https://expressjs.com/en/guide/", "title": "Express Guide", "type": "docs", "level": "beginner"},
+        {"url": "https://expressjs.com/en/api/", "title": "Express API Reference", "type": "docs", "level": "intermediate"},
+        {"url": "https://restfulapi.net/", "title": "REST API Design", "type": "tutorial", "level": "all"}
+      ]
+    },
+    {
+      "keywords": ["nextjs", "next", "server components", "app router", "pages router", "ssr", "ssg", "isr"],
+      "category": "Next.js",
+      "links": [
+        {"url": "https://nextjs.org/docs", "title": "Next.js Documentation", "type": "docs", "level": "all"},
+        {"url": "https://nextjs.org/learn", "title": "Next.js Interactive Tutorial", "type": "tutorial", "level": "beginner"}
+      ]
+    },
+    {
+      "keywords": ["node", "nodejs", "npm", "event loop", "streams", "buffer", "cluster"],
+      "category": "Node.js",
+      "links": [
+        {"url": "https://nodejs.org/en/docs/", "title": "Node.js Official Docs", "type": "docs", "level": "all"},
+        {"url": "https://github.com/goldbergyoni/nodebestpractices", "title": "Node.js Best Practices", "type": "tutorial", "level": "intermediate"}
+      ]
+    },
+    {
+      "keywords": ["database", "sql", "postgres", "postgresql", "mysql", "sqlite", "query", "index", "join"],
+      "category": "Database / SQL",
+      "links": [
+        {"url": "https://www.postgresql.org/docs/", "title": "PostgreSQL Documentation", "type": "docs", "level": "all"},
+        {"url": "https://sqlbolt.com/", "title": "SQLBolt - Interactive SQL Lessons", "type": "tutorial", "level": "beginner"},
+        {"url": "https://use-the-index-luke.com/", "title": "Use The Index, Luke - SQL Indexing", "type": "tutorial", "level": "intermediate"}
+      ]
+    },
+    {
+      "keywords": ["auth", "authentication", "authorization", "jwt", "oauth", "oauth2", "password", "session", "token", "bcrypt"],
+      "category": "Authentication & Security",
+      "links": [
+        {"url": "https://owasp.org/www-project-web-security-testing-guide/", "title": "OWASP Security Guide", "type": "docs", "level": "intermediate"},
+        {"url": "https://jwt.io/", "title": "JWT.io - JWT Explained", "type": "tool", "level": "all"},
+        {"url": "https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html", "title": "OWASP Auth Cheat Sheet", "type": "docs", "level": "intermediate"}
+      ]
+    },
+    {
+      "keywords": ["docker", "container", "dockerfile", "docker-compose", "containerization"],
+      "category": "Docker",
+      "links": [
+        {"url": "https://docs.docker.com/get-started/", "title": "Docker Getting Started", "type": "docs", "level": "beginner"},
+        {"url": "https://docs.docker.com/compose/", "title": "Docker Compose", "type": "docs", "level": "intermediate"},
+        {"url": "https://docker-curriculum.com/", "title": "Docker for Beginners", "type": "tutorial", "level": "beginner"}
+      ]
+    },
+    {
+      "keywords": ["test", "testing", "jest", "pytest", "unittest", "mocha", "vitest", "playwright", "cypress", "tdd", "bdd"],
+      "category": "Testing",
+      "links": [
+        {"url": "https://jestjs.io/docs/getting-started", "title": "Jest Documentation", "type": "docs", "level": "beginner"},
+        {"url": "https://docs.pytest.org/", "title": "Pytest Documentation", "type": "docs", "level": "beginner"},
+        {"url": "https://testing-library.com/", "title": "Testing Library", "type": "docs", "level": "intermediate"},
+        {"url": "https://vitest.dev/", "title": "Vitest Documentation", "type": "docs", "level": "beginner"},
+        {"url": "https://playwright.dev/", "title": "Playwright E2E Testing", "type": "docs", "level": "intermediate"}
+      ]
+    },
+    {
+      "keywords": ["async", "await", "promise", "callback", "concurrent", "parallel", "event loop", "coroutine"],
+      "category": "Async Programming",
+      "links": [
+        {"url": "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous", "title": "MDN Async JavaScript", "type": "docs", "level": "beginner"},
+        {"url": "https://docs.python.org/3/library/asyncio.html", "title": "Python asyncio", "type": "docs", "level": "intermediate"}
+      ]
+    },
+    {
+      "keywords": ["git", "version control", "branch", "merge", "rebase", "conflict"],
+      "category": "Git",
+      "links": [
+        {"url": "https://git-scm.com/book/en/v2", "title": "Pro Git Book (free)", "type": "tutorial", "level": "all"},
+        {"url": "https://learngitbranching.js.org/", "title": "Learn Git Branching (interactive)", "type": "tool", "level": "beginner"},
+        {"url": "https://ohshitgit.com/", "title": "Oh Shit, Git!?! - Recovery Guide", "type": "tutorial", "level": "all"}
+      ]
+    },
+    {
+      "keywords": ["design pattern", "factory", "singleton", "observer", "strategy", "decorator", "adapter", "proxy", "builder", "command"],
+      "category": "Design Patterns",
+      "links": [
+        {"url": "https://refactoring.guru/design-patterns", "title": "Refactoring Guru - Patterns", "type": "tutorial", "level": "all"},
+        {"url": "https://patterns.dev/", "title": "Patterns.dev - Web Patterns", "type": "tutorial", "level": "intermediate"},
+        {"url": "https://sourcemaking.com/design_patterns", "title": "SourceMaking - Patterns", "type": "tutorial", "level": "intermediate"}
+      ]
+    },
+    {
+      "keywords": ["state management", "redux", "zustand", "mobx", "recoil", "jotai", "context", "store", "flux"],
+      "category": "State Management",
+      "links": [
+        {"url": "https://redux.js.org/", "title": "Redux Documentation", "type": "docs", "level": "intermediate"},
+        {"url": "https://zustand-demo.pmnd.rs/", "title": "Zustand Documentation", "type": "docs", "level": "beginner"},
+        {"url": "https://react.dev/learn/managing-state", "title": "React State Management Guide", "type": "tutorial", "level": "beginner"}
+      ]
+    },
+    {
+      "keywords": ["graphql", "query", "mutation", "subscription", "schema", "resolver", "apollo"],
+      "category": "GraphQL",
+      "links": [
+        {"url": "https://graphql.org/learn/", "title": "GraphQL Official Learn", "type": "docs", "level": "beginner"},
+        {"url": "https://www.apollographql.com/docs/", "title": "Apollo GraphQL Docs", "type": "docs", "level": "intermediate"}
+      ]
+    },
+    {
+      "keywords": ["websocket", "socket", "realtime", "real-time", "socket.io", "ws", "sse", "server-sent events"],
+      "category": "WebSockets & Real-time",
+      "links": [
+        {"url": "https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API", "title": "MDN WebSocket API", "type": "docs", "level": "intermediate"},
+        {"url": "https://socket.io/docs/v4/", "title": "Socket.IO Documentation", "type": "docs", "level": "beginner"}
+      ]
+    },
+    {
+      "keywords": ["cache", "caching", "redis", "memcached", "cdn", "memoization"],
+      "category": "Caching",
+      "links": [
+        {"url": "https://redis.io/docs/", "title": "Redis Documentation", "type": "docs", "level": "intermediate"},
+        {"url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching", "title": "MDN HTTP Caching", "type": "docs", "level": "intermediate"}
+      ]
+    },
+    {
+      "keywords": ["ci", "cd", "cicd", "pipeline", "github actions", "deployment", "continuous integration"],
+      "category": "CI/CD",
+      "links": [
+        {"url": "https://docs.github.com/en/actions", "title": "GitHub Actions Docs", "type": "docs", "level": "beginner"},
+        {"url": "https://circleci.com/docs/", "title": "CircleCI Documentation", "type": "docs", "level": "intermediate"}
+      ]
+    },
+    {
+      "keywords": ["kubernetes", "k8s", "pod", "deployment", "service", "ingress", "helm"],
+      "category": "Kubernetes",
+      "links": [
+        {"url": "https://kubernetes.io/docs/home/", "title": "Kubernetes Documentation", "type": "docs", "level": "intermediate"},
+        {"url": "https://kubernetes.io/docs/tutorials/", "title": "Kubernetes Tutorials", "type": "tutorial", "level": "beginner"}
+      ]
+    },
+    {
+      "keywords": ["django", "django rest", "drf", "orm", "migration", "model", "view", "template"],
+      "category": "Django",
+      "links": [
+        {"url": "https://docs.djangoproject.com/", "title": "Django Documentation", "type": "docs", "level": "all"},
+        {"url": "https://tutorial.djangogirls.org/", "title": "Django Girls Tutorial", "type": "tutorial", "level": "beginner"},
+        {"url": "https://www.django-rest-framework.org/", "title": "Django REST Framework", "type": "docs", "level": "intermediate"}
+      ]
+    },
+    {
+      "keywords": ["fastapi", "pydantic", "uvicorn", "starlette"],
+      "category": "FastAPI",
+      "links": [
+        {"url": "https://fastapi.tiangolo.com/", "title": "FastAPI Documentation", "type": "docs", "level": "all"},
+        {"url": "https://fastapi.tiangolo.com/tutorial/", "title": "FastAPI Tutorial", "type": "tutorial", "level": "beginner"}
+      ]
+    },
+    {
+      "keywords": ["go", "golang", "goroutine", "channel", "interface", "defer", "concurrency"],
+      "category": "Go",
+      "links": [
+        {"url": "https://go.dev/tour/", "title": "A Tour of Go", "type": "tutorial", "level": "beginner"},
+        {"url": "https://gobyexample.com/", "title": "Go by Example", "type": "tutorial", "level": "beginner"},
+        {"url": "https://go.dev/blog/", "title": "Go Blog", "type": "docs", "level": "intermediate"}
+      ]
+    },
+    {
+      "keywords": ["rust", "ownership", "borrowing", "lifetime", "trait", "cargo", "crate"],
+      "category": "Rust",
+      "links": [
+        {"url": "https://doc.rust-lang.org/book/", "title": "The Rust Book", "type": "tutorial", "level": "beginner"},
+        {"url": "https://doc.rust-lang.org/rust-by-example/", "title": "Rust by Example", "type": "tutorial", "level": "beginner"},
+        {"url": "https://github.com/rust-lang/rustlings", "title": "Rustlings Exercises", "type": "tool", "level": "beginner"}
+      ]
+    },
+    {
+      "keywords": ["orm", "prisma", "sequelize", "typeorm", "sqlalchemy", "hibernate", "entity framework", "drizzle"],
+      "category": "ORMs & Query Builders",
+      "links": [
+        {"url": "https://www.prisma.io/docs/", "title": "Prisma Documentation", "type": "docs", "level": "beginner"},
+        {"url": "https://docs.sqlalchemy.org/", "title": "SQLAlchemy Documentation", "type": "docs", "level": "intermediate"},
+        {"url": "https://orm.drizzle.team/", "title": "Drizzle ORM", "type": "docs", "level": "beginner"}
+      ]
+    },
+    {
+      "keywords": ["vue", "vuejs", "composition api", "options api", "vuex", "pinia", "nuxt"],
+      "category": "Vue.js",
+      "links": [
+        {"url": "https://vuejs.org/guide/introduction.html", "title": "Vue.js Guide", "type": "docs", "level": "beginner"},
+        {"url": "https://pinia.vuejs.org/", "title": "Pinia State Management", "type": "docs", "level": "intermediate"}
+      ]
+    },
+    {
+      "keywords": ["angular", "rxjs", "observable", "directive", "pipe", "module", "component"],
+      "category": "Angular",
+      "links": [
+        {"url": "https://angular.dev/", "title": "Angular Documentation", "type": "docs", "level": "all"},
+        {"url": "https://rxjs.dev/guide/overview", "title": "RxJS Guide", "type": "docs", "level": "intermediate"}
+      ]
+    },
+    {
+      "keywords": ["svelte", "sveltekit", "store", "reactive"],
+      "category": "Svelte",
+      "links": [
+        {"url": "https://svelte.dev/docs", "title": "Svelte Documentation", "type": "docs", "level": "beginner"},
+        {"url": "https://learn.svelte.dev/", "title": "Svelte Interactive Tutorial", "type": "tutorial", "level": "beginner"}
+      ]
+    },
+    {
+      "keywords": ["security", "xss", "csrf", "injection", "owasp", "vulnerability", "sanitize"],
+      "category": "Web Security",
+      "links": [
+        {"url": "https://owasp.org/www-project-top-ten/", "title": "OWASP Top 10", "type": "docs", "level": "all"},
+        {"url": "https://portswigger.net/web-security", "title": "Web Security Academy (free)", "type": "tutorial", "level": "intermediate"}
+      ]
+    },
+    {
+      "keywords": ["serverless", "lambda", "cloud functions", "edge functions", "vercel", "netlify"],
+      "category": "Serverless",
+      "links": [
+        {"url": "https://docs.aws.amazon.com/lambda/", "title": "AWS Lambda Documentation", "type": "docs", "level": "intermediate"},
+        {"url": "https://vercel.com/docs/functions", "title": "Vercel Serverless Functions", "type": "docs", "level": "beginner"}
+      ]
+    },
+    {
+      "keywords": ["message queue", "rabbitmq", "kafka", "sqs", "pub sub", "event driven", "amqp"],
+      "category": "Message Queues",
+      "links": [
+        {"url": "https://www.rabbitmq.com/tutorials", "title": "RabbitMQ Tutorials", "type": "tutorial", "level": "beginner"},
+        {"url": "https://kafka.apache.org/documentation/", "title": "Apache Kafka Documentation", "type": "docs", "level": "intermediate"}
+      ]
+    }
+  ]
+}

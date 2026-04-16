@@ -1,119 +1,184 @@
 # Curated Learning Resources
 
-A curated collection of high-quality learning resources for common concepts found in AI-generated code.
+High-quality learning resources organized by topic. Each link is hand-picked for quality and relevance.
 
-## Web Development
+**Difficulty**: B = Beginner, I = Intermediate, A = Advanced
+
+## Frontend
 
 ### React
-- [React Official Docs](https://react.dev) - Primary learning resource
-- [React Hooks Reference](https://react.dev/reference/react) - Complete hooks API
-- [Thinking in React](https://react.dev/learn/thinking-in-react) - Mental model
+- [React Official Docs](https://react.dev) - Primary learning resource (B)
+- [React Hooks Reference](https://react.dev/reference/react) - Complete hooks API (I)
+- [Thinking in React](https://react.dev/learn/thinking-in-react) - Mental model (B)
+
+### Next.js
+- [Next.js Documentation](https://nextjs.org/docs) - Official comprehensive guide (B)
+- [Next.js Learn](https://nextjs.org/learn) - Interactive tutorial (B)
+
+### Vue.js
+- [Vue.js Guide](https://vuejs.org/guide/introduction.html) - Official guide (B)
+- [Pinia](https://pinia.vuejs.org/) - Vue state management (I)
+
+### Angular
+- [Angular Docs](https://angular.dev/) - Official documentation (B)
+- [RxJS Guide](https://rxjs.dev/guide/overview) - Reactive extensions (I)
+
+### Svelte
+- [Svelte Documentation](https://svelte.dev/docs) - Official docs (B)
+- [Svelte Interactive Tutorial](https://learn.svelte.dev/) - Learn by doing (B)
 
 ### TypeScript
-- [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html) - Official guide
-- [TypeScript Deep Dive](https://basarat.gitbook.io/typescript/) - Free online book
+- [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html) - Official guide (B)
+- [TypeScript Deep Dive](https://basarat.gitbook.io/typescript/) - Free online book (I)
+- [TypeScript Playground](https://www.typescriptlang.org/play) - Interactive sandbox (B)
+
+### State Management
+- [Redux Documentation](https://redux.js.org/) - Predictable state container (I)
+- [Zustand](https://zustand-demo.pmnd.rs/) - Minimal state management (B)
+- [React State Guide](https://react.dev/learn/managing-state) - When to use what (B)
+
+## Backend
 
 ### Node.js / Express
-- [Express Guide](https://expressjs.com/en/guide/) - Official guide
-- [Node.js Best Practices](https://github.com/goldbergyoni/nodebestpractices)
+- [Express Guide](https://expressjs.com/en/guide/) - Official guide (B)
+- [Node.js Best Practices](https://github.com/goldbergyoni/nodebestpractices) - 80+ practices (I)
 
-## Backend Development
+### NestJS
+- [NestJS Documentation](https://docs.nestjs.com/) - Official docs (I)
 
-### Python
+### Python - Django
+- [Django Docs](https://docs.djangoproject.com/) - Official documentation (B)
+- [Django Girls Tutorial](https://tutorial.djangogirls.org/) - Beginner-friendly (B)
+- [Django REST Framework](https://www.django-rest-framework.org/) - API toolkit (I)
 
-#### Django
-- [Django Docs](https://docs.djangoproject.com/) - Official documentation
-- [Django Girls Tutorial](https://tutorial.djangogirls.org/) - Beginner-friendly
-
-#### FastAPI
-- [FastAPI Docs](https://fastapi.tiangolo.com/) - Official
-- [Full Stack FastAPI](https://testdriven.io/courses/fastapi/) - Comprehensive
+### Python - FastAPI
+- [FastAPI Docs](https://fastapi.tiangolo.com/) - Official docs with tutorial (B)
 
 ### Go
-- [Go by Example](https://gobyexample.com/) - Practical examples
-- [A Tour of Go](https://go.dev/tour/) - Interactive tutorial
-- [Go Blog](https://go.dev/blog/) - Official blog
+- [A Tour of Go](https://go.dev/tour/) - Interactive tutorial (B)
+- [Go by Example](https://gobyexample.com/) - Practical examples (B)
+- [Go Blog](https://go.dev/blog/) - Official blog (I)
+- [Effective Go](https://go.dev/doc/effective_go) - Idiomatic Go (I)
 
 ### Rust
-- [The Rust Book](https://doc.rust-lang.org/book/) - Official guide
-- [Rust by Example](https://doc.rust-lang.org/rust-by-example/) - Examples-based
-- [Rustlings](https://github.com/rust-lang/rustlings) - Exercises
+- [The Rust Book](https://doc.rust-lang.org/book/) - Official guide (B)
+- [Rust by Example](https://doc.rust-lang.org/rust-by-example/) - Examples-based (B)
+- [Rustlings](https://github.com/rust-lang/rustlings) - Exercises (B)
+
+### Ruby / Rails
+- [Ruby on Rails Guides](https://guides.rubyonrails.org/) - Official (B)
+- [The Odin Project](https://www.theodinproject.com/) - Full curriculum (B)
+
+### PHP / Laravel
+- [Laravel Documentation](https://laravel.com/docs) - Official docs (B)
+- [Laracasts](https://laracasts.com/) - Video tutorials (B)
 
 ## Databases
 
 ### SQL
-- [SQL Bolt](https://sqlbolt.com/) - Interactive lessons
-- [PostgreSQL Exercises](https://pgexercises.com/) - Practice queries
+- [SQLBolt](https://sqlbolt.com/) - Interactive lessons (B)
+- [PostgreSQL Exercises](https://pgexercises.com/) - Practice queries (I)
+- [Use The Index, Luke](https://use-the-index-luke.com/) - SQL indexing guide (I)
 
 ### PostgreSQL
-- [PostgreSQL Docs](https://www.postgresql.org/docs/) - Official
-- [Use The Index, Luke](https://use-the-index-luke.com/) - SQL indexing
+- [PostgreSQL Docs](https://www.postgresql.org/docs/) - Official (I)
 
-### ORM / Query Builders
-- [Prisma Docs](https://www.prisma.io/docs/) - If using Prisma
-- [SQLAlchemy Docs](https://docs.sqlalchemy.org/) - If using SQLAlchemy
+### ORMs & Query Builders
+- [Prisma Docs](https://www.prisma.io/docs/) - Modern TypeScript ORM (B)
+- [Drizzle ORM](https://orm.drizzle.team/) - TypeScript SQL toolkit (B)
+- [SQLAlchemy Docs](https://docs.sqlalchemy.org/) - Python ORM (I)
+
+## API & Data
+
+### GraphQL
+- [GraphQL Learn](https://graphql.org/learn/) - Official introduction (B)
+- [Apollo GraphQL](https://www.apollographql.com/docs/) - Client + server (I)
+
+### WebSockets
+- [MDN WebSocket API](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API) - Reference (I)
+- [Socket.IO Docs](https://socket.io/docs/v4/) - Real-time library (B)
 
 ## DevOps
 
 ### Docker
-- [Docker Official Docs](https://docs.docker.com/get-started/) - Getting started
-- [Docker for Beginners](https://docker-curriculum.com/) - Interactive
+- [Docker Getting Started](https://docs.docker.com/get-started/) - Official (B)
+- [Docker for Beginners](https://docker-curriculum.com/) - Interactive (B)
+- [Docker Compose](https://docs.docker.com/compose/) - Multi-container (I)
 
 ### Kubernetes
-- [Kubernetes Docs](https://kubernetes.io/docs/) - Official
-- [Learn Kubernetes](https://kubernetes.io/learn/) - Learning paths
+- [Kubernetes Docs](https://kubernetes.io/docs/) - Official (I)
+- [Kubernetes Tutorials](https://kubernetes.io/docs/tutorials/) - Hands-on (B)
 
 ### CI/CD
-- [GitHub Actions Docs](https://docs.github.com/en/actions)
-- [CircleCI Tutorial](https://circleci.com/docs/)
+- [GitHub Actions Docs](https://docs.github.com/en/actions) - GitHub CI (B)
+- [CircleCI Tutorial](https://circleci.com/docs/) - Alternative CI (I)
+
+### Serverless
+- [AWS Lambda Docs](https://docs.aws.amazon.com/lambda/) - AWS functions (I)
+- [Vercel Functions](https://vercel.com/docs/functions) - Edge functions (B)
+
+## Caching & Messaging
+
+### Caching
+- [Redis Documentation](https://redis.io/docs/) - In-memory data store (I)
+- [MDN HTTP Caching](https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching) - Browser/CDN caching (I)
+
+### Message Queues
+- [RabbitMQ Tutorials](https://www.rabbitmq.com/tutorials) - Message broker (B)
+- [Apache Kafka Docs](https://kafka.apache.org/documentation/) - Event streaming (I)
 
 ## Security
 
 ### Web Security
-- [OWASP Top 10](https://owasp.org/www-project-top-ten/) - Critical risks
-- [Web Security Academy](https://portswigger.net/web-security) - Free courses
+- [OWASP Top 10](https://owasp.org/www-project-top-ten/) - Critical risks (B)
+- [Web Security Academy](https://portswigger.net/web-security) - Free courses (I)
+- [OWASP Cheat Sheets](https://cheatsheetseries.owasp.org/) - Security best practices (I)
 
 ### Authentication
-- [JWT.io](https://jwt.io/) - JWT introduction
-- [Auth0 Blog](https://auth0.com/blog/) - Auth best practices
-- [OWASP Authentication Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html)
+- [JWT.io](https://jwt.io/) - JWT explained (B)
+- [Auth0 Blog](https://auth0.com/blog/) - Auth best practices (I)
 
 ## Testing
 
 ### JavaScript/TypeScript
-- [Jest Docs](https://jestjs.io/docs/getting-started)
-- [Testing Library](https://testing-library.com/docs/) - React testing
-- [Cypress Docs](https://docs.cypress.io/) - E2E testing
+- [Jest Docs](https://jestjs.io/docs/getting-started) - Test framework (B)
+- [Vitest](https://vitest.dev/) - Vite-native testing (B)
+- [Testing Library](https://testing-library.com/docs/) - DOM testing (I)
+- [Playwright](https://playwright.dev/) - E2E testing (I)
+- [Cypress Docs](https://docs.cypress.io/) - E2E testing (B)
 
 ### Python
-- [Pytest Docs](https://docs.pytest.org/) - Testing framework
-- [Hypothesis](https://hypothesis.readthedocs.io/) - Property-based testing
+- [Pytest Docs](https://docs.pytest.org/) - Testing framework (B)
+- [Hypothesis](https://hypothesis.readthedocs.io/) - Property-based testing (A)
 
 ## Design Patterns & Architecture
 
-- [Refactoring Guru](https://refactoring.guru/) - Patterns catalog
-- [Patterns.dev](https://patterns.dev/) - Web patterns
-- [Martin Fowler](https://martinfowler.com/) - Architecture articles
+- [Refactoring Guru](https://refactoring.guru/) - Patterns catalog with visuals (B)
+- [Patterns.dev](https://patterns.dev/) - Web-specific patterns (I)
+- [Martin Fowler](https://martinfowler.com/) - Architecture articles (A)
+- [System Design Primer](https://github.com/donnemartin/system-design-primer) - System design (I)
 
 ## Git
 
-- [Pro Git Book](https://git-scm.com/book/en/v2) - Free, comprehensive
-- [Learn Git Branching](https://learngitbranching.js.org/) - Interactive
-- [Oh Shit, Git!?!](https://ohshitgit.com/) - Recovery guide
+- [Pro Git Book](https://git-scm.com/book/en/v2) - Free, comprehensive (B)
+- [Learn Git Branching](https://learngitbranching.js.org/) - Interactive (B)
+- [Oh Shit, Git!?!](https://ohshitgit.com/) - Recovery guide (B)
 
-## Videos (Quality Channels)
+## Video Channels
 
-- [Fireship](https://www.youtube.com/c/Fireship) - Quick tutorials
-- [The Net Ninja](https://www.youtube.com/c/TheNetNinja) - Comprehensive
-- [Traversy Media](https://www.youtube.com/c/TraversyMedia) - Web dev
-- [Josh Comeau](https://www.youtube.com/c/JoshwComeau) - React deep dives
+- [Fireship](https://www.youtube.com/c/Fireship) - Quick explainers (B)
+- [The Net Ninja](https://www.youtube.com/c/TheNetNinja) - Comprehensive tutorials (B)
+- [Traversy Media](https://www.youtube.com/c/TraversyMedia) - Web dev (B)
+- [ThePrimeagen](https://www.youtube.com/c/ThePrimeagen) - Performance, Vim, Go (I)
+- [ArjanCodes](https://www.youtube.com/c/ArjanCodes) - Python design patterns (I)
 
 ## Practice Platforms
 
-- [Exercism](https://exercism.io/) - Code practice
-- [LeetCode](https://leetcode.com/) - Algorithms
-- [Project Euler](https://projecteuler.net/) - Math/programming
+- [Exercism](https://exercism.io/) - Mentored code practice (B)
+- [LeetCode](https://leetcode.com/) - Algorithm challenges (I)
+- [Project Euler](https://projecteuler.net/) - Math + programming (I)
+- [Codewars](https://www.codewars.com/) - Code katas (B)
 
 ---
 
-*Contributing: Add quality resources that you've found helpful. Priority: official docs > established tutorials > quality videos.*
+*Contributing: Add quality resources that you've found helpful. Priority: official docs > established tutorials > quality videos. Include difficulty level.*

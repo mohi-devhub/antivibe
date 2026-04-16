@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "prompt",
-            "prompt": "A task just completed. If new code files were written or modified, let the user know they can run /antivibe to generate a deep-dive learning guide for what was just implemented. Keep the message to one sentence."
+            "prompt": "A coding task just completed. Check if new code files were written or modified in this session. If yes, suggest in one sentence: 'Run /antivibe to generate a deep-dive learning guide for what was just implemented.' If no meaningful code was written, say nothing."
           }
         ]
       }
@@ -17,7 +17,7 @@
         "hooks": [
           {
             "type": "prompt",
-            "prompt": "Analyze the current session. Did Claude Code write any new files or implement any features? If yes, respond with 'You can run /antivibe to generate deep-dive explanations for the code written this session.' If no meaningful code was written, respond with nothing."
+            "prompt": "Session is ending. Check if Claude Code wrote new files or implemented features during this session. If meaningful code was produced, suggest: 'Before you go — run /antivibe to generate deep-dive explanations for the code written this session.' If no code was written, say nothing."
           }
         ]
       }
