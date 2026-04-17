@@ -81,7 +81,7 @@ else
             echo "$file"
             ((FILE_COUNT++)) || true
         fi
-    done < <(eval "find . -type f \( $ANTIVIBE_FIND_EXTENSIONS \) -mmin -${TIME_WINDOW} 2>/dev/null" | grep -v node_modules | grep -v '.git/' | head -"$MAX_FILES")
+    done < <(find . -type f \( "${ANTIVIBE_FIND_EXTENSIONS[@]}" \) -mmin "-${TIME_WINDOW}" 2>/dev/null | grep -v node_modules | grep -v '.git/' | head -"$MAX_FILES")
 fi
 
 echo ""

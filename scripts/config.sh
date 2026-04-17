@@ -13,8 +13,14 @@ ANTIVIBE_MAX_FILES="${ANTIVIBE_MAX_FILES:-50}"       # max files to capture per 
 # Supported file extensions for code analysis
 ANTIVIBE_EXTENSIONS="ts js tsx jsx py go rs java kt swift cs rb php c cpp h hpp vue svelte"
 
-# find-compatible extension filter
-ANTIVIBE_FIND_EXTENSIONS='-name "*.ts" -o -name "*.js" -o -name "*.tsx" -o -name "*.jsx" -o -name "*.py" -o -name "*.go" -o -name "*.rs" -o -name "*.java" -o -name "*.kt" -o -name "*.swift" -o -name "*.cs" -o -name "*.rb" -o -name "*.php" -o -name "*.c" -o -name "*.cpp" -o -name "*.vue" -o -name "*.svelte"'
+# find-compatible extension filter (array — safe for direct use, no eval needed)
+ANTIVIBE_FIND_EXTENSIONS=(
+    -name "*.ts" -o -name "*.js" -o -name "*.tsx" -o -name "*.jsx"
+    -o -name "*.py" -o -name "*.go" -o -name "*.rs" -o -name "*.java"
+    -o -name "*.kt" -o -name "*.swift" -o -name "*.cs" -o -name "*.rb"
+    -o -name "*.php" -o -name "*.c" -o -name "*.cpp"
+    -o -name "*.vue" -o -name "*.svelte"
+)
 
 # Colors for terminal output
 RED='\033[0;31m'

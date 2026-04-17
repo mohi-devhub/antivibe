@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
@@ -20,12 +20,17 @@ jobs:
         run: chmod +x scripts/*.sh tests/*.sh
 
       - name: Install ShellCheck
-        run: sudo apt-get install -y shellcheck || brew install shellcheck
+        run: |
+          if [[ "$RUNNER_OS" == "Linux" ]]; then
+            sudo apt-get install -y shellcheck
+          elif [[ "$RUNNER_OS" == "macOS" ]]; then
+            brew install shellcheck
+          fi
 
       - name: Lint shell scripts
         run: |
-          shellcheck scripts/*.sh || true
-          shellcheck tests/*.sh || true
+          shellcheck scripts/*.sh
+          shellcheck tests/*.sh
 
       - name: Run test suite
         run: bash tests/run-tests.sh
