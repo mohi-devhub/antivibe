@@ -105,7 +105,7 @@ Enable automatic deep-dive generation after task completion:
 
 ```bash
 # Copy hooks to your project
-cp framework/hooks/hooks.json your-project/.claude/hooks.json
+cp hooks/hooks.json your-project/.claude/hooks.json
 ```
 
 | Hook | When | Use Case |
