@@ -50,12 +50,15 @@ deep-dive/
 └── database-models-2026-01-15.md
 ```
 
-Each file contains:
-- **Overview**: What this code does and why it exists
-- **Code Walkthrough**: File-by-file explanation with line-by-line notes
-- **Concepts Explained**: Design patterns, algorithms, CS concepts used
-- **Learning Resources**: Curated docs, tutorials, videos
-- **Related Code**: Links to other files in the codebase
+The exact sections depend on the output mode (see [Output Mode](#output-mode)):
+
+| Section | `compact` (default) | `full` |
+|---------|:---:|:---:|
+| **Overview** — what the code does and why it exists | ✅ | ✅ |
+| **Key Components / Concepts** — design patterns, algorithms, CS concepts used | ✅ | ✅ |
+| **Code Walkthrough** — file-by-file, line-by-line notes | — | ✅ |
+| **Learning Resources** — curated docs, tutorials, videos | — | ✅ |
+| **Related Code** — links to other files in the codebase | — | ✅ |
 
 ## Configuration
 
@@ -63,7 +66,7 @@ Each file contains:
 
 Concepts listed here will not be explained in full — the explainer will only note that they were used and in what context. Edit this list to match your current knowledge.
 
-```
+```yaml
 known_concepts:
   - async/await
   - React hooks
@@ -74,7 +77,7 @@ known_concepts:
 
 Controls how much detail is generated per run. Default is `compact` to keep token costs low.
 
-```
+```yaml
 output_mode: compact
 ```
 
@@ -91,7 +94,7 @@ Override inline in your request:
 
 Sets the explanation depth when no level is specified in the request. Options: `junior`, `mid`, `senior`. Default: `mid`.
 
-```
+```yaml
 default_level: mid
 ```
 
@@ -157,10 +160,10 @@ Create markdown file in `deep-dive/` folder:
 - Name format: `[component]-[timestamp].md`
 - Detect output mode from the request or `output_mode` config (default: `compact`)
 - **Compact mode**: Use the compact template. No line-by-line, no resources, no Next Steps. Max 5 files — if more are in scope, summarize extras in one line each and offer to go deeper.
-- **Full mode**: Use the full template from `templates/deep-dive.md`. Include all sections.
+- **Full mode**: Use the full template from `templates/deep-dive.md`. Include all sections. No 5-file limit — analyze every file in scope; for very large inputs, split the output across multiple deep-dive files rather than truncating.
 - Make it educational, not just descriptive
 
-## Configuration
+## Auto-Trigger Configuration
 
 AntiVibe can be configured to auto-trigger via hooks:
 

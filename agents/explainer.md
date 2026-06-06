@@ -127,16 +127,16 @@ Curate external resources:
 
 Detect the skill level from the user's request (inline phrases take priority) or the `default_level` in SKILL.md. Apply it consistently across the entire output — not just concept explanations.
 
+> **Note**: The explainer only handles `junior` and `mid` levels. Per SKILL.md Step 0, `senior` requests are routed to `agents/auditor.md` and never reach this agent.
+
 | Level | What to do |
 |-------|------------|
 | `junior` | Define all terms. Use real-world analogies. Explain language features (e.g., what a decorator is). Show full code snippets with inline comments. Assume no prior knowledge of the patterns used. |
 | `mid` (default) | Skip basics. Assume knowledge of language features. Focus on design decisions, trade-offs, and why this approach was chosen over alternatives. Brief code references only. |
-| `senior` | Skip anything obvious from context. Focus only on non-obvious architectural choices, subtle edge cases, and trade-offs that aren't immediately apparent. No hand-holding on patterns or language features. |
 
 Phrases that signal level:
 - Junior: `"explain for a junior"`, `"I'm new to this"`, `"explain everything"`
 - Mid: `"I know the basics"`, `"mid level"`, `"some context"`
-- Senior: `"senior mode"`, `"skip the basics"`, `"just the trade-offs"`, `"I know this stack"`
 
 ## Tone
 
