@@ -7,15 +7,15 @@
 </p>
 
 <p align="center">
-  <strong>Learn what AI writes, not just accept it.</strong><br>
-  An anti-vibecoding learning framework for Claude Code that generates detailed, educational explanations of AI-generated code.
+  <strong>Understand any code, not just accept it.</strong><br>
+  A code learning &amp; audit framework for Claude Code that turns any codebase — new, legacy, or AI-generated — into educational deep dives or senior-level architectural audits.
 </p>
 
 ---
 
 ## ✨ What is AntiVibe?
 
-AntiVibe is a **learning-focused code explanation framework** that transforms AI-generated code into educational content. Unlike generic code summaries, AntiVibe helps you understand:
+AntiVibe is a **code learning & audit framework** that transforms any code — AI-generated, legacy, or otherwise — into educational content or architectural audits. You don't need recent git history or AI-authored files; point it at any file, directory, or module. Unlike generic code summaries, AntiVibe helps you understand:
 
 - **What** the code does (functionality)
 - **Why** it was written this way (design decisions)
@@ -24,7 +24,7 @@ AntiVibe is a **learning-focused code explanation framework** that transforms AI
 
 > ⚡ **The Problem**: AI writes code, developers copy-paste it, nobody learns anything.
 > 
-> 🛡️ **The Solution**: AntiVibe explains the reasoning so you actually understand.
+> 🛡️ **The Solution**: AntiVibe explains the reasoning so you actually understand — and for code you already know, it audits the trade-offs instead.
 
 ---
 
@@ -32,10 +32,15 @@ AntiVibe is a **learning-focused code explanation framework** that transforms AI
 
 | Feature | Description |
 |---------|-------------|
-| **Deep Dives** | Generate comprehensive learning guides from AI code |
+| **Deep Dives** | Generate comprehensive learning guides from any code |
+| **Audit Mode** | Senior-level architectural audit — decisions, flags, edge cases, testability |
+| **Skill Levels** | Tune depth to `junior`, `mid`, or `senior` |
+| **Output Modes** | `compact` (default, low token cost) or `full` (resources + line-by-line) |
+| **Known Concepts** | Skip list so familiar concepts get a one-line note, not a full explanation |
+| **Prerequisites** | Maps each concept to the foundations you need to understand it first |
+| **Legacy-Friendly** | Works on existing codebases — no git history or AI authorship required |
 | **Concept Mapping** | Connect code to underlying CS principles |
 | **Curated Resources** | Quality links to docs, tutorials, videos |
-| **Phase-Aware** | Group explanations by implementation phase |
 | **Auto-Trigger** | Optional hooks for automatic generation |
 | **Multi-Language** | Works with any language/framework |
 
@@ -56,18 +61,27 @@ cp -r antivibe ~/.claude/skills/antivibe
 ### Usage
 
 ```
-/antivibe                        # Start a deep dive
-"deep dive"                      # Analyze recently written code
+/antivibe                        # Start a deep dive (compact, mid-level by default)
+/antivibe full                   # Full deep dive with resources + line-by-line
+"deep dive"                      # Analyze recently written code (git diff)
+"walk me through src/auth/"      # Explain an explicit file or directory
+"explain this codebase"          # Understand existing / legacy code
 "learn from this code"           # Generate learning guide
-"explain what AI wrote"          # Explain specific files
-"understand what AI wrote"       # Understand design decisions
+```
+
+Tune the depth and detail inline:
+
+```
+"explain for a junior"           # Define terms, analogies, full snippets
+"I know the basics"              # Mid level — focus on design decisions
+"audit this, just the trade-offs"  # Senior mode — routes to the auditor agent
 ```
 
 ---
 
 ## 📁 Output Example
 
-Generate a deep dive and get a file like:
+Run a `full` deep dive (`/antivibe full`) and get a file like the one below. The default `compact` mode produces a shorter version — Overview, Key Components, and Concepts (what + why) — without the walkthrough or resources.
 
 ```markdown
 # Deep Dive: Authentication System
@@ -98,6 +112,27 @@ Saved to: `deep-dive/auth-system-2026-04-10.md`
 ---
 
 ## 🔧 Configuration
+
+### Behavior (in `SKILL.md`)
+
+Tune how AntiVibe analyzes code by editing the config blocks in `SKILL.md`:
+
+```yaml
+output_mode: compact      # compact (default) or full
+default_level: mid        # junior, mid, or senior
+known_concepts:           # skipped in explanations (one-line note only)
+  - async/await
+  - React hooks
+  - REST APIs
+```
+
+| Setting | Options | Effect |
+|---------|---------|--------|
+| `output_mode` | `compact` / `full` | `compact` keeps token cost low (no resources, no line-by-line); `full` adds curated resources, prerequisites, and a line-by-line walkthrough |
+| `default_level` | `junior` / `mid` / `senior` | Sets explanation depth; `senior` routes to the auditor agent for an architectural audit |
+| `known_concepts` | list | Concepts you already know — acknowledged in one line instead of fully explained |
+
+All three can also be overridden inline in a request (e.g. `"/antivibe full"`, `"explain for a junior"`, `"just the trade-offs"`).
 
 ### Auto-Trigger Hooks
 
@@ -136,7 +171,8 @@ antivibe/
 │   ├── find-resources.sh       # Find external resources
 │   └── generate-deep-dive.sh   # Generate markdown output
 ├── agents/
-│   └── explainer.md            # Subagent for detailed analysis
+│   ├── explainer.md            # Subagent for learning-focused explanations
+│   └── auditor.md              # Subagent for senior-level architectural audits
 ├── templates/
 │   └── deep-dive.md            # Output template
 ├── reference/
