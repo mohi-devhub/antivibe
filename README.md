@@ -3,6 +3,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Anti--Vibecoding-Learning-orange?style=for-the-badge" alt="Anti-Vibecoding">
   <img src="https://img.shields.io/badge/Claude_Code-Skill-blue?style=for-the-badge" alt="Claude Code">
+  <img src="https://img.shields.io/badge/Mintlify-OSS_Program-2b9348?style=for-the-badge" alt="Mintlify OSS">
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License">
 </p>
 
