@@ -34,6 +34,7 @@ AntiVibe is a **code learning & audit framework** that transforms any code — A
 | Feature | Description |
 |---------|-------------|
 | **Deep Dives** | Generate comprehensive learning guides from any code |
+| **Map Mode** | Large codebases: a system map first, then a fact-checked deep dive per module |
 | **Audit Mode** | Senior-level architectural audit — decisions, flags, edge cases, testability |
 | **Skill Levels** | Tune depth to `junior`, `mid`, or `senior` |
 | **Output Modes** | `compact` (default, low token cost) or `full` (resources + line-by-line) |
@@ -64,6 +65,7 @@ cp -r antivibe ~/.claude/skills/antivibe
 ```
 /antivibe                        # Start a deep dive (compact, mid-level by default)
 /antivibe full                   # Full deep dive with resources + line-by-line
+/antivibe map                    # Large codebase: system map + per-module deep dives
 "deep dive"                      # Analyze recently written code (git diff)
 "walk me through src/auth/"      # Explain an explicit file or directory
 "explain this codebase"          # Understand existing / legacy code
@@ -173,9 +175,12 @@ antivibe/
 │   └── generate-deep-dive.sh   # Generate markdown output
 ├── agents/
 │   ├── explainer.md            # Subagent for learning-focused explanations
-│   └── auditor.md              # Subagent for senior-level architectural audits
+│   ├── auditor.md              # Subagent for senior-level architectural audits
+│   ├── cartographer.md         # Map mode, layer 1: module split + system map
+│   └── verifier.md             # Map mode: fact-checks deep dives against the code
 ├── templates/
-│   └── deep-dive.md            # Output template
+│   ├── deep-dive.md            # Output template
+│   └── system-map.md           # Map mode: system map + module addendum
 ├── reference/
 │   ├── language-patterns.md    # Framework-specific patterns
 │   └── resource-curation.md    # Curated learning resources

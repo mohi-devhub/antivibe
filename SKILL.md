@@ -17,6 +17,9 @@ triggers:
   - phrase: "just the trade-offs"
   - phrase: "what should I worry about"
   - phrase: "code review"
+  - phrase: "/antivibe map"
+  - phrase: "map this codebase"
+  - phrase: "system map"
 ---
 
 # AntiVibe - Code Learning & Audit Framework
@@ -85,9 +88,11 @@ output_mode: compact
 |------|----------------|
 | `compact` (default) | Overview, key components (function-level, one line each), concepts (what + why only). No resources. No line-by-line. Max 5 files. |
 | `full` | Everything in compact, plus: line-by-line walkthrough, prerequisites, curated resources, Next Steps. |
+| `map` | For codebases too large for one deep dive. Two layers: a **system map** of the whole codebase, then a **full** deep dive per module, each fact-checked against the code. See [Map Mode](#map-mode-large-codebases). |
 
 Override inline in your request:
 - `"/antivibe full"`, `"full deep dive"`, `"include resources"` → `full` mode
+- `"/antivibe map"`, `"map this codebase"`, `"system map"` → `map` mode
 - Default: `compact`
 
 ### Default Skill Level
@@ -117,11 +122,14 @@ Level can also be specified inline in the request:
 Before analyzing, read the configuration above:
 - Load the `known_concepts` skip list. Any concept in this list will be acknowledged in one sentence instead of fully explained.
 - Detect the skill level: check the user's request first (inline phrases take priority), then fall back to `default_level`. Apply this level consistently throughout the entire output.
-- If level = `senior`, route to `agents/auditor.md` instead of continuing this workflow.
+- Resolve the output mode the same way: inline phrases (`"/antivibe full"`, `"/antivibe map"`, ...) take priority, then `output_mode`. "Map mode requested" below means the resolved output mode is `map`, whether it came from the request or from `output_mode: map`. When phrases overlap, an explicit map phrase wins: `/antivibe map src/auth/ include resources` runs map mode, and `include resources` / `full` only add learning resources inside the map's module deep dives.
+- If level = `senior` and map mode was not requested, first check the large-target condition in Step 1 (mode 0). If it applies, offer map mode: if the user accepts, follow [Map Mode](#map-mode-large-codebases); if they decline, route to `agents/auditor.md`. If it does not apply, route to `agents/auditor.md` instead of continuing this workflow. Map mode takes precedence: a senior request with map mode requested runs map mode, using the auditor for the module layer (see [Map Mode](#map-mode-large-codebases)).
 
 ### Step 1: Identify Code to Analyze
 
 Use the first applicable mode:
+
+0. **Map** — Map mode was requested (resolved output mode is `map`, from the request or from `output_mode: map`; follow Map Mode directly, whatever the target size), or the explicit target is a whole repository / large directory (roughly more than 30 source files or 5,000 lines). Compact mode's 5-file cap would truncate it, so offer map mode: "This is large — want a system map plus per-module deep dives (`/antivibe map`)?" If yes, follow [Map Mode](#map-mode-large-codebases) instead of Steps 2–5.
 
 1. **Explicit** — User named specific files, a directory, or a module in their request → use those directly. No git needed. Example: "explain `src/auth/`" or "walk me through `api/routes.py`".
 
@@ -163,6 +171,31 @@ Create markdown file in `deep-dive/` folder:
 - **Full mode**: Use the full template from `templates/deep-dive.md`. Include all sections. No 5-file limit — analyze every file in scope; for very large inputs, split the output across multiple deep-dive files rather than truncating.
 - Make it educational, not just descriptive
 
+## Map Mode (Large Codebases)
+
+One deep dive cannot hold a large codebase. Map mode builds understanding in two layers, top-down, and checks each layer against the code.
+
+**Layer 1: System map** (`agents/cartographer.md`)
+1. Survey the codebase without running it: tree, manifests, entry points, imports, models, existing docs (docs lag code; code wins).
+2. Split it into 6–15 modules by responsibility. Exclude vendored, generated and archived code, and say so.
+3. **Checkpoint**: show the module list and ask whether to deep-dive all, a subset, or adjust the split.
+4. Write `deep-dive/[project]-map/00-system-map.md` from `templates/system-map.md`: the big picture, module table, the main journey end to end, data model, cross-cutting concerns, reading order, top risks.
+
+**Layer 2: Module deep dives** (`agents/explainer.md`, `full` mode)
+5. For each **selected** module, write `deep-dive/[project]-map/modules/NN-[module].md` with the full template plus the map-mode addendum ("In One Minute", "How It Connects", "Flags").
+6. If subagents are available, run one per module in parallel; otherwise go one module at a time and report progress ("4 of 12 done").
+
+**Verification** (`agents/verifier.md`)
+7. Fact-check each module deep dive against the code and fix it in place. Then check the system map against the verified modules and the code.
+8. Write `deep-dive/[project]-map/README.md`: a "start here" link to the map and one line per module.
+
+Rules for map mode:
+- Every factual claim cites `path:line`. Write "unverified" rather than guess.
+- Read code only. Do not run the project, its tests, migrations or installs.
+- Write only the files named above. Scratch notes and inventories stay out of `deep-dive/`, so the index never links to drafts.
+- Skill level and `known_concepts` apply as usual. At `senior` level the module layer uses `agents/auditor.md` instead of the explainer, and each module page follows the senior variant in the template's Module Deep Dive Addendum: the auditor's sections (and its 500-word limit) replace the full template, wrapped by "In One Minute" and "How It Connects".
+- The external resource search (Step 4) is optional in map mode. List only the official docs of libraries the code actually imports.
+
 ## Auto-Trigger Configuration
 
 AntiVibe can be configured to auto-trigger via hooks:
@@ -201,6 +234,9 @@ These are helpers - you can also do everything via direct code analysis.
 
 **Input**: "Deep dive" *(no target, legacy project with no recent changes)*
 → Mode: Scan. Asks: "Which file or module would you like to analyze?"
+
+**Input**: "/antivibe map" *(large or unfamiliar codebase)*
+→ Mode: Map. Writes `deep-dive/[project]-map/00-system-map.md`, asks which modules to cover, then writes `modules/NN-*.md` deep dives, each fact-checked.
 
 **Input**: "Audit this, just the trade-offs" *(senior mode)*
 → Routes to `agents/auditor.md`. Produces architectural audit, not an explanation.
