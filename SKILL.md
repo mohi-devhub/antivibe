@@ -122,13 +122,14 @@ Level can also be specified inline in the request:
 Before analyzing, read the configuration above:
 - Load the `known_concepts` skip list. Any concept in this list will be acknowledged in one sentence instead of fully explained.
 - Detect the skill level: check the user's request first (inline phrases take priority), then fall back to `default_level`. Apply this level consistently throughout the entire output.
-- If level = `senior` and the user did not ask for map mode, route to `agents/auditor.md` instead of continuing this workflow. Map mode takes precedence: a senior `/antivibe map` request runs map mode, using the auditor for the module layer (see [Map Mode](#map-mode-large-codebases)).
+- Resolve the output mode the same way: inline phrases (`"/antivibe full"`, `"/antivibe map"`, ...) take priority, then `output_mode`. "Map mode requested" below means the resolved output mode is `map`, whether it came from the request or from `output_mode: map`.
+- If level = `senior` and map mode was not requested, first check the large-target condition in Step 1 (mode 0). If it applies, offer map mode: if the user accepts, follow [Map Mode](#map-mode-large-codebases); if they decline, route to `agents/auditor.md`. If it does not apply, route to `agents/auditor.md` instead of continuing this workflow. Map mode takes precedence: a senior request with map mode requested runs map mode, using the auditor for the module layer (see [Map Mode](#map-mode-large-codebases)).
 
 ### Step 1: Identify Code to Analyze
 
 Use the first applicable mode:
 
-0. **Map** — User asked for map mode, or the explicit target is a whole repository / large directory (roughly more than 30 source files or 5,000 lines). Compact mode's 5-file cap would truncate it, so offer map mode: "This is large — want a system map plus per-module deep dives (`/antivibe map`)?" If yes, follow [Map Mode](#map-mode-large-codebases) instead of Steps 2–5.
+0. **Map** — Map mode was requested (resolved output mode is `map`, from the request or from `output_mode: map`; follow Map Mode directly, whatever the target size), or the explicit target is a whole repository / large directory (roughly more than 30 source files or 5,000 lines). Compact mode's 5-file cap would truncate it, so offer map mode: "This is large — want a system map plus per-module deep dives (`/antivibe map`)?" If yes, follow [Map Mode](#map-mode-large-codebases) instead of Steps 2–5.
 
 1. **Explicit** — User named specific files, a directory, or a module in their request → use those directly. No git needed. Example: "explain `src/auth/`" or "walk me through `api/routes.py`".
 
