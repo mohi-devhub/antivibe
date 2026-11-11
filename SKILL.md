@@ -122,7 +122,7 @@ Level can also be specified inline in the request:
 Before analyzing, read the configuration above:
 - Load the `known_concepts` skip list. Any concept in this list will be acknowledged in one sentence instead of fully explained.
 - Detect the skill level: check the user's request first (inline phrases take priority), then fall back to `default_level`. Apply this level consistently throughout the entire output.
-- Resolve the output mode the same way: inline phrases (`"/antivibe full"`, `"/antivibe map"`, ...) take priority, then `output_mode`. "Map mode requested" below means the resolved output mode is `map`, whether it came from the request or from `output_mode: map`.
+- Resolve the output mode the same way: inline phrases (`"/antivibe full"`, `"/antivibe map"`, ...) take priority, then `output_mode`. "Map mode requested" below means the resolved output mode is `map`, whether it came from the request or from `output_mode: map`. When phrases overlap, an explicit map phrase wins: `/antivibe map src/auth/ include resources` runs map mode, and `include resources` / `full` only add learning resources inside the map's module deep dives.
 - If level = `senior` and map mode was not requested, first check the large-target condition in Step 1 (mode 0). If it applies, offer map mode: if the user accepts, follow [Map Mode](#map-mode-large-codebases); if they decline, route to `agents/auditor.md`. If it does not apply, route to `agents/auditor.md` instead of continuing this workflow. Map mode takes precedence: a senior request with map mode requested runs map mode, using the auditor for the module layer (see [Map Mode](#map-mode-large-codebases)).
 
 ### Step 1: Identify Code to Analyze
