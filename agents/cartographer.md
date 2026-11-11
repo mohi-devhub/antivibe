@@ -50,11 +50,11 @@ Write `deep-dive/<project>-map/00-system-map.md` using `templates/system-map.md`
 - **Cite every factual claim** as `path:line` (or `path` for whole-file claims). If you cannot confirm something, write "unverified". Never guess.
 - **The end-to-end walkthrough is the most valuable section.** Pick the main user journey (a request, a job, a session) and follow it through the code in numbered steps. Each step names the entry point, the function that does the work and the data it touches.
 - Use Mermaid for the big-picture flowchart and the data model. Keep each diagram under ~25 nodes; split if larger.
-- The module table links each module to `modules/<slug>.md`, even before those files exist. Layer 2 fills them in.
+- The module table links each **selected** module to `modules/<slug>.md`, even before those files exist; Layer 2 fills them in. Mark unselected modules as "not generated" and do not link to their deep dives anywhere in the map.
 
 ## Step 5: Hand Off to Layer 2
 
-Return the module list (slug, title, globs, purpose, depends-on) so each module can be deep-dived with `agents/explainer.md` in full mode, followed by `agents/verifier.md`.
+Return the full module list (slug, title, globs, purpose, depends-on), marking which modules the user selected, so only those are deep-dived with `agents/explainer.md` in full mode (or `agents/auditor.md` at `senior` level), followed by `agents/verifier.md`.
 
 ## Constraints
 

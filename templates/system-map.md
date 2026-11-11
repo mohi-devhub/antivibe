@@ -110,3 +110,12 @@ Each `modules/NN-name.md` is a **full-mode** deep dive (`templates/deep-dive.md`
 - **Adds "## How It Connects"** after Related Code: inbound callers, outbound dependencies (by module), and the tables / external services it touches.
 - **Adds "## Flags"**: auditor-style items worth being skeptical of, each with `path:line`.
 - **Ends with "## Verification note"** written by `agents/verifier.md`.
+
+**Senior variant** (`senior` level, module pages written by `agents/auditor.md`):
+
+- **"## In One Minute"**: at most 3 sentences.
+- **The auditor's sections, exactly as `agents/auditor.md` defines them.** Its rules apply to these sections only: no walkthrough, no resources, 500 words maximum. The auditor's "Flags" section stands in for the addendum's "Flags".
+- **"## How It Connects"**: a bullet list of inbound callers, outbound modules, and tables/services touched.
+- **"## Verification note"**, as above.
+
+The wrapper sections stay outside the auditor's 500-word limit so the map's links and module table still work.

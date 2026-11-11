@@ -122,7 +122,7 @@ Level can also be specified inline in the request:
 Before analyzing, read the configuration above:
 - Load the `known_concepts` skip list. Any concept in this list will be acknowledged in one sentence instead of fully explained.
 - Detect the skill level: check the user's request first (inline phrases take priority), then fall back to `default_level`. Apply this level consistently throughout the entire output.
-- If level = `senior`, route to `agents/auditor.md` instead of continuing this workflow.
+- If level = `senior` and the user did not ask for map mode, route to `agents/auditor.md` instead of continuing this workflow. Map mode takes precedence: a senior `/antivibe map` request runs map mode, using the auditor for the module layer (see [Map Mode](#map-mode-large-codebases)).
 
 ### Step 1: Identify Code to Analyze
 
@@ -181,7 +181,7 @@ One deep dive cannot hold a large codebase. Map mode builds understanding in two
 4. Write `deep-dive/[project]-map/00-system-map.md` from `templates/system-map.md`: the big picture, module table, the main journey end to end, data model, cross-cutting concerns, reading order, top risks.
 
 **Layer 2: Module deep dives** (`agents/explainer.md`, `full` mode)
-5. For each module, write `deep-dive/[project]-map/modules/NN-[module].md` with the full template plus the map-mode addendum ("In One Minute", "How It Connects", "Flags").
+5. For each **selected** module, write `deep-dive/[project]-map/modules/NN-[module].md` with the full template plus the map-mode addendum ("In One Minute", "How It Connects", "Flags").
 6. If subagents are available, run one per module in parallel; otherwise go one module at a time and report progress ("4 of 12 done").
 
 **Verification** (`agents/verifier.md`)
@@ -192,7 +192,7 @@ Rules for map mode:
 - Every factual claim cites `path:line`. Write "unverified" rather than guess.
 - Read code only. Do not run the project, its tests, migrations or installs.
 - Write only the files named above. Scratch notes and inventories stay out of `deep-dive/`, so the index never links to drafts.
-- Skill level and `known_concepts` apply as usual. `senior` level uses `agents/auditor.md` for the module layer instead of the explainer.
+- Skill level and `known_concepts` apply as usual. At `senior` level the module layer uses `agents/auditor.md` instead of the explainer, and each module page follows the senior variant in the template's Module Deep Dive Addendum: the auditor's sections (and its 500-word limit) replace the full template, wrapped by "In One Minute" and "How It Connects".
 - The external resource search (Step 4) is optional in map mode. List only the official docs of libraries the code actually imports.
 
 ## Auto-Trigger Configuration

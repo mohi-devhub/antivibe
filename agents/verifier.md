@@ -11,7 +11,7 @@ A learning guide that is confidently wrong is worse than no guide. Assume the de
 
 ## Step 1: Pick Claims to Check
 
-Check **at least 15 specific claims** (or every claim, for a short file). Prioritise in this order:
+Check **every factual claim** on the page. If the page is too long to check fully, check at least 15 claims in the priority order below and label the result as sampled in the verification note (see Step 3), so a partly checked page is never presented as fully verified. Prioritise in this order:
 
 1. **Citations**: does `path:line` exist, and does that line say what the doc says?
 2. **Behaviour**: does the code actually do that, including error paths, retries and edge cases?
@@ -33,7 +33,7 @@ Append to the end of the file:
 ```markdown
 ## Verification note
 
-- Claims checked: [N]
+- Claims checked: [N] of ~[M] (write "all" if every claim was checked; otherwise this is a **sampled** verification)
 - Corrected: [list, one line each: what was wrong → what is true (path:line)]
 - Marked unverified: [list]
 - Added: [list]
@@ -43,7 +43,7 @@ Append to the end of the file:
 
 After the module deep dives are verified, check the system map against them:
 
-- Every module in the map's table has a deep dive, and the links resolve.
+- Every selected module has a deep dive. Unselected modules are marked "not generated", and every link in the map resolves.
 - The end-to-end walkthrough agrees with the module deep dives at every step. Where they disagree, read the code and fix whichever side is wrong.
 - Every non-excluded source file is covered by some module. List any that are not.
 
